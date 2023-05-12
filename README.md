@@ -1,2 +1,3 @@
 # cse185-demo-project
-Demo CSE185 Project
+
+This is a demonstration project for CSE185. It implements the "pileup" method available through samtools.
