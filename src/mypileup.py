@@ -1,19 +1,17 @@
 #!/usr/bin/env python
 
 """
-Command-line script to perform 
-pileup of BAM files
+Command-line script to perform  pileup of BAM files
 
 Similar to samtools mpileup
 """
 
 import argparse
 
-
 def main():
     parser = argparse.ArgumentParser(
     	prog="mypileup",
-    	description=__doc__
+    	description="Command-line script to perform  pileup of BAM files"
     )
 
     # Input
