@@ -19,13 +19,16 @@ def main():
     		type=str)
 
     # Output
-    parser.add_argument("--out", help="Write output to file. " \
-    		"Default: stdout", type=str, required=False)
+    parser.add_argument("-o", "--out", help="Write output to file. " \
+    		"Default: stdout", metavar="FILE", type=str, required=False)
 
     # Other options
+    parser.add_argument("-f", "--fasta-ref", \
+    		help="faidx indexed reference sequence file", \
+    		type=str, metavar="FILE", required=False)
     parser.add_argument("-r", help="region in which pileup is " \
     		"generated. Format chr:start-end", \
-    		type=str, required=False)
+    		type=str, metavar="REG", required=False)
 
     # Parse args
     args = parser.parse_args()
