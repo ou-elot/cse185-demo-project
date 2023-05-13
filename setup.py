@@ -12,5 +12,4 @@ setup(
             "mypileup=src.mypileup:main"
         ],
     },
-    install_requires=[],
 )
