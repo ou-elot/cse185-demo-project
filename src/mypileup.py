@@ -7,7 +7,7 @@ Similar to samtools mpileup
 """
 
 import argparse
-import myutils
+from . import myutils as myutils
 import pyfaidx
 import pysam
 import sys
@@ -60,6 +60,7 @@ def main():
 	for pileupcolumn in bamfile.pileup(region=region):
 		chrom = pileupcolumn.reference_name
 		position = pileupcolumn.reference_pos
+		numreads = 0
 		if reffasta is not None:
 			refbase = str(reffasta[chrom][position])
 		else:
@@ -70,8 +71,9 @@ def main():
 			if not pileupread.is_del and not pileupread.is_refskip:
 			# query position is None if is_del or is_refskip is set.
 				read_bases.append(myutils.GetReadBase(pileupread, refbase))
-				read_quals.append(myutils.GetQual(pileupread))
-		outf.write("\t".join([chrom, str(position+1), refbase, \
+				read_quals.append(myutils.GetReadQual(pileupread))
+				numreads += 1
+		outf.write("\t".join([chrom, str(position+1), refbase, str(numreads), \
 				"".join(read_bases), "".join(read_quals)])+"\n")
 	bamfile.close()
 	outf.close()

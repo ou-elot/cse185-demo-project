@@ -2,15 +2,33 @@
 Utilities for mypileup
 """
 
-# Need "." "," based on match to refbase
-# ^, $
+def GetQual(qualscore):
+	"""
+	Convert a quality score to ASCII value
+	Use encoding chr(qualscore+33)
+
+	Parameters
+	----------
+	qualscore : int
+	   Numerical quality score
+
+	Returns
+	-------
+	qualchar : str
+	   Quality score ascii character
+	"""
+	qualchar = chr(qualscore+33)
+	return qualchar
+
 def GetReadBase(pileupread, refbase):
 	"""
-	Extract the mpileup sequence of bases
+	Extract the mpileup base for a read
 	from a single read at a particular position
 
 	Mimics the format of "read bases" specified here:
 	http://www.htslib.org/doc/samtools-mpileup.html
+
+	Note: currently does not handle indels
 
 	Parameters
 	----------
@@ -32,21 +50,39 @@ def GetReadBase(pileupread, refbase):
 	# Set the base
 	nucstring = ""
 	if read_base == refbase:
-		if pileupread.alignment.is_reverse():
+		if pileupread.alignment.is_reverse:
 			nucstring = ","
 		else: nucstring = "."
 	else:
-		if pileupread.alignment.is_reverse():
+		if pileupread.alignment.is_reverse:
 			nucstring = read_base.lower()
 		else: nucstring = read_base
 
 	# Check if it is the first or last base of the read
-	# TODO
+	if len(pileupread.alignment.query_sequence) == (pileupread.query_position-1):
+		nucstring += "$"
+	if pileupread.query_position == 0:
+		nucstring = "^" + GetQual(pileupread.alignment.mapping_quality) + nucstring
 
-	return pileupread.alignment.query_sequence[pileupread.query_position]
+	return nucstring
 
-# TODO docs
-# TODO convert to ascii
-def GetQual(pileupread):
-	return str(pileupread.alignment.query_qualities[pileupread.query_position])
+def GetReadQual(pileupread):
+	"""
+	Extract the mpileup quality score for a read
+	from a single read at a particular position
+
+	Parameters
+	----------
+	pileupread : pysam.PileupRead
+	   The pileupread object from which 
+	   to extract info
+
+	Returns
+	-------
+	qualstring : str
+	   Quality score ascii value	
+	"""
+	qualscore = pileupread.alignment.query_qualities[pileupread.query_position]
+	qualstring = GetQual(qualscore) 
+	return qualstring
 
