@@ -7,20 +7,10 @@ Similar to samtools mpileup
 """
 
 import argparse
+import myutils
 import pyfaidx
 import pysam
 import sys
-
-# TODO docs
-# Need "." "," based on match to refbase
-# ^, $
-def GetReadBase(pileupread, refbase):
-	return pileupread.alignment.query_sequence[pileupread.query_position]
-
-# TODO docs
-# TODO convert to ascii
-def GetQual(pileupread):
-	return str(pileupread.alignment.query_qualities[pileupread.query_position])
 
 def main():
 	parser = argparse.ArgumentParser(
@@ -79,8 +69,8 @@ def main():
 		for pileupread in pileupcolumn.pileups:
 			if not pileupread.is_del and not pileupread.is_refskip:
 			# query position is None if is_del or is_refskip is set.
-				read_bases.append(GetReadBase(pileupread, refbase))
-				read_quals.append(GetQual(pileupread))
+				read_bases.append(myutils.GetReadBase(pileupread, refbase))
+				read_quals.append(myutils.GetQual(pileupread))
 		outf.write("\t".join([chrom, str(position+1), refbase, \
 				"".join(read_bases), "".join(read_quals)])+"\n")
 	bamfile.close()
