@@ -31,8 +31,12 @@ author = "Melissa Gymrek"
 extensions = [
     "sphinx.ext.autodoc",
     "numpydoc",
-    "m2r2"
+    "m2r2",
+    'sphinx.ext.napoleon'
 ]
+
+# Napoleon settings
+napoleon_include_private_with_doc = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
