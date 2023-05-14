@@ -44,7 +44,7 @@ def main():
 
 	# Load FASTA
 	if args.fasta_ref is not None:
-	    reffasta = pyfaidx.Fasta(args.fasta_ref)
+		reffasta = pyfaidx.Fasta(args.fasta_ref)
 	else:
 		reffasta = None
 
