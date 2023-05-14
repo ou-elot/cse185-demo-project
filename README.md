@@ -23,3 +23,36 @@ python setup.py install --user
 ```
 
 If the install was successful, typing `mypileup --help` should show a useful message.
+
+# Basic usage
+
+The basic usage of `mypileup` is:
+
+```
+mypileup [-f ref.fasta] [other options] in.bam
+```
+
+To run `mypileup` on a small test example (using files in this repo):
+```
+mypileup -f example-files/test.fa example-files/test.bam
+```
+
+This should produce the output below:
+```
+chrTEST	3	C	1	^!.	F
+chrTEST	4	T	2	.^!.	FH
+chrTEST	5	A	2	..	FH
+chrTEST	6	G	2	..	FH
+chrTEST	7	C	2	..	FH
+chrTEST	8	T	2	..	FH
+chrTEST	9	A	2	..	FH
+chrTEST	10	C	2	.G	FH
+chrTEST	11	G	2	..	FH
+chrTEST	12	T	2	..	FH
+chrTEST	13	A	1	T	H
+```
+
+To compare to output of `samtools mpileup`, run:
+```
+samtools mpileup --no-baq -f example-files/test.fa example-files/test.bam
+```
