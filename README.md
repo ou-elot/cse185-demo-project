@@ -56,3 +56,20 @@ To compare to output of `samtools mpileup`, run:
 ```
 samtools mpileup --no-baq -f example-files/test.fa example-files/test.bam
 ```
+
+# mypileup options
+
+The only required input to `mypileup` is a (sorted, indexed) BAM file. Users may additionally specify the options below:
+
+* `-f FILE`, `--fasta FILE`: faidx indexed reference sequence file. If specified, the mpileup format includes the reference base at each position (in column 3). Otherwise, the reference position at each base is listed as "N".
+
+* `-r REG`, `--region REG`: region in which pileup is generated. Format chr:start-end. By default, the entire BAM file is processed.
+
+* `-o FILE`, `--output FILE`: Write output to file. By default, output is written to stdout.
+
+
+# File format
+
+The output file format is the same as the samtools mpileup method. See: http://www.htslib.org/doc/samtools-mpileup.html
+
+
