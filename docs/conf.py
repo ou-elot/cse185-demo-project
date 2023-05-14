@@ -30,7 +30,6 @@ author = "Melissa Gymrek"
 # ones.
 extensions = [
     "sphinx.ext.autodoc",
-    "sphinx_autodoc_typehints",
     "sphinx_rtd_theme",
     "numpydoc",
     "sphinx_click",
