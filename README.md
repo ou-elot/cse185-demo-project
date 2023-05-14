@@ -1,4 +1,4 @@
-# cse185-demo-project (mypileup)
+# mypileup (CSE185 Project Demo)
 
 This is a demonstration project for CSE185. It implements a subset of the the "pileup" method available through samtools. See the [samtools mpileup](http://www.htslib.org/doc/samtools-mpileup.html) page for more details.
 
