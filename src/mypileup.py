@@ -48,7 +48,7 @@ def main():
 	else:
 		reffasta = None
 
-    # Load BAM
+	# Load BAM
 	bamfile = pysam.AlignmentFile(args.bam, "rb")
 
 	if args.region is not None:
@@ -56,7 +56,7 @@ def main():
 	else:
 		region = None
 
-    # Peform pileup
+	# Peform pileup
 	for pileupcolumn in bamfile.pileup(region=region):
 		chrom = pileupcolumn.reference_name
 		position = pileupcolumn.reference_pos
