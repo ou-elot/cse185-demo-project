@@ -8,6 +8,7 @@ Similar to samtools mpileup
 
 import argparse
 from . import myutils as myutils
+import os
 import pyfaidx
 import pysam
 import sys
@@ -44,6 +45,8 @@ def main():
 
 	# Load FASTA
 	if args.fasta_ref is not None:
+		if not os.path.exists(args.fasta_ref):
+			myutils.ERROR("{fasta} does not exist".format(fasta=args.fasta_ref))
 		reffasta = pyfaidx.Fasta(args.fasta_ref)
 	else:
 		reffasta = None
