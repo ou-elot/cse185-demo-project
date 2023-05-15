@@ -9,7 +9,7 @@ setup(
     packages=find_packages(),
     entry_points={
         "console_scripts": [
-            "mypileup=src.mypileup:main"
+            "mypileup=mypileup.mypileup:main"
         ],
     },
 )
