@@ -8,6 +8,7 @@ Similar to samtools mpileup
 
 import argparse
 from . import myutils as myutils
+from mypileup import __version__
 import os
 import pyfaidx
 import pysam
@@ -34,6 +35,8 @@ def main():
 	parser.add_argument("-r", "--region", help="region in which pileup is " \
 		"generated. Format chr:start-end", \
 		type=str, metavar="REG", required=False)
+	parser.add_argument("--version", help="Print the version and quit", \
+		action="version", version = '{version}'.format(version=__version__))
 
 	# Parse args
 	args = parser.parse_args()
