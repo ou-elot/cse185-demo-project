@@ -90,7 +90,16 @@ sh tests/cmdline_tests.sh
 # Run unit tests
 python -m pytest --cov=.
 ```
+# Usage
+The mygwas program is a command line tool that takes in a vcf file containing genotypes, a txt/csv file containing phenotypes, and an output directory you want the output files to be in, with the directory name ending with '/'. 
+```
+usage: mygwas --geno [genotype_file] --pheno [phenotype_file] --out [name of output directory]
+```
 
+Example:
+```
+mygwas --geno geno.vcf --pheno pheno.vcf --out gwas_output/
+```
 
 
 
